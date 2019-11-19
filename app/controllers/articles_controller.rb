@@ -1,38 +1,38 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+  # GET /articles/new
+  def new
+    @article = Article.new
+  end
+
   # GET /articles
   # GET /articles.json
   def index
     @articles = Article.all
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
-  def show
-  end
-
-  # GET /articles/new
-  def new
-    @article = Article.new
-  end
-
   # GET /articles/1/edit
   def edit
+    @article = Article.find(params[:id])    
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-    @article.save
-    redirect_to article_show(@article)
+    if @article.save
+      flash[:notice] = "Article was successfully created"
+      redirect_to article_path(@article)
+    else
+      render 'new'
+    end    
   end
-
 
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to article_path(@article)
@@ -40,6 +40,13 @@ class ArticlesController < ApplicationController
       render 'edit'
     end
   end
+
+  # GET /articles/1
+  # GET /articles/1.json
+  def show
+    @article = Article.find(params[:id])
+  end
+
 
   # DELETE /articles/1
   # DELETE /articles/1.json
