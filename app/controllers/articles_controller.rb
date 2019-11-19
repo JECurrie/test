@@ -1,24 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
-  # GET /articles/new
-  def new
-    @article = Article.new
-  end
-
-  # GET /articles
-  # GET /articles.json
   def index
     @articles = Article.all
   end
 
-  # GET /articles/1/edit
-  def edit
-    @article = Article.find(params[:id])    
+  def new
+    @article = Article.new
   end
 
-  # POST /articles
-  # POST /articles.json
+  def edit
+  end
+
   def create
     @article = Article.new(article_params)
     if @article.save
@@ -29,10 +22,7 @@ class ArticlesController < ApplicationController
     end    
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to article_path(@article)
@@ -41,29 +31,20 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
   end
 
-
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted"
     redirect_to articles_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_article
-    ##  @article = Article.find(params[:id])
+      @article = Article.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :description)
     end
