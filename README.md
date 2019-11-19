@@ -1,1 +1,1 @@
-Create rails application and setup home and about pages.
+Create rails application and setup home and about pages
