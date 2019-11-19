@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <h1>Listing all articles</h1>
 <%= link_to 'Create new article', new_article_path %>
 <br><br>
@@ -15,12 +16,15 @@
       <tr>
         <td><%= article.title %></td>
         <td><%= article.description %></td>
-        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Show', article_path(article) %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>      </tr>
+        <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to 'New Article', new_article_path %>
 
