@@ -51,11 +51,10 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-=begin    
+    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted"
     redirect_to articles_path
-=end    
   end
 
   private
